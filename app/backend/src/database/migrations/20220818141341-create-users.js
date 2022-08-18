@@ -21,6 +21,13 @@ module.exports = {
         type: Sequelize.string,
         allowNull: false,
       },
+
+      email: {
+        type: Sequelize.string,
+        allowNull: false,
+        unique: true,
+      },
+
     });
   },
 
