@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import ILogin from 'src/interfaces/ILogin';
+import ILogin from '../interfaces/ILogin';
 
 export default class LoginValidate {
   public validate =
