@@ -28,6 +28,11 @@ module.exports = {
         unique: true,
       },
 
+      password: {
+        type: Sequelize.string,
+        allowNull: true,
+      }
+
     });
   },
 
