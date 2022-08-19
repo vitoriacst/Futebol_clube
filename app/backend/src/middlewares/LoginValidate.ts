@@ -1,4 +1,4 @@
-import { ICredentials } from 'src/interfaces/ILogin';
+import { ICredentials } from '../interfaces/ILogin';
 
 export default class LoginValidate {
   static validateLogin = async (credentials : ICredentials): Promise<ICredentials> => {
