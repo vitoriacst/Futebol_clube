@@ -8,6 +8,7 @@ export default class LoginValidate {
       email: Joi.string().email().required().messages({
         'string.empty': message,
       }),
+      password: Joi.string().min(6).required(),
     });
   };
 }
