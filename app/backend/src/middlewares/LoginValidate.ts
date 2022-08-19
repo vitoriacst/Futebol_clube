@@ -16,6 +16,10 @@ export default class LoginValidate {
       throw new Errors(401, error.message);
       // -> Erros vem diretamente do MiddleWare de erro
     }
+    if (error?.message.includes('length')) {
+      throw new Errors(401, 'Incorrect email or password');
+    }
+    return credentials;
   };
 }
 
