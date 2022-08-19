@@ -1,5 +1,5 @@
 import modelUsers from '../database/models/users.model';
-import { IUser, IUserService } from '../interfaces/ILogin';
+import { ICredentials, IUser, IUserService } from '../interfaces/ILogin';
 
 // -|> implementando a interface IUserService , todos os metodos que ira ter interface IuserService tera que ter na classe
 
@@ -10,4 +10,9 @@ export default class UserService implements IUserService {
     });
     return emailUser;
   }
+}
+
+public UserLogin = async (credentials: ICredentials) => {
+  const userInformations : IUser | null = await UserService.findEMail(credentials.email);
+  if(!userInformations)
 }
