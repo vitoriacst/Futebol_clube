@@ -4,7 +4,7 @@ const sequelize = require("sequelize");
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    queryInterface.createTable("Users", {
+    queryInterface.createTable("users", {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -31,12 +31,11 @@ module.exports = {
       password: {
         type: Sequelize.STRING,
         allowNull: true,
-      }
-
+      },
     });
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Users')
+    await queryInterface.dropTable("users");
   },
 };
