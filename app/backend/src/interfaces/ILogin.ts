@@ -17,7 +17,8 @@ export interface ILoginResponse {
     role: string,
     email: string,
     password: string,
-  }
+  };
+  token: string;
 }
 
 // -|> interface para colher as credencias cobradas no login
