@@ -6,6 +6,7 @@ import JwtService from './Jwt.service';
 
 export default class UserService implements IUserService {
   static async findByEmail(email:string): Promise<IUser | null> {
+    // -|> procurando pelo email
     const user: IUser | null = await modelUsers.findOne({
       where: { email },
     });
@@ -13,10 +14,11 @@ export default class UserService implements IUserService {
   }
 
   public login = async (credentials: ICredentials) => {
-    const user: IUser | null = await UserService.findByEmail(credentials.email);
-    if (!user) return null;
-    const { id, email, role, username } = user;
-    const token = await JwtService.generateToken(user);
+    const userInformation: IUser | null = await UserService.findByEmail(credentials.email);
+    if (!userInformation) return null;
+    const { id, email, role, username } = userInformation;
+    // -|> gerando o token apartir das informacoes do usuario
+    const token = await JwtService.generateToken(userInformation);
     return { user: { id, email, role, username }, token };
   };
 }
