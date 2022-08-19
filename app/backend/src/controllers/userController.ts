@@ -3,8 +3,11 @@ import { IUserService } from '../interfaces/ILogin';
 import LoginValidate from '../middlewares/LoginValidate';
 
 export default class UserController {
-  constructor(private _userService: IUserService) {}
-  async UserLoginValidate(response: Response, request: Request): Promise<void> {
+  constructor(private _userService: IUserService) {
+    this.userLoginValidate = this.userLoginValidate.bind(this);
+  }
+
+  async userLoginValidate(response: Response, request: Request): Promise<void> {
     await LoginValidate.validateLogin(request.body);
     // puxando do middleware de validacao
     const result = await this._userService.login(request.body);
