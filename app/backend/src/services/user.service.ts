@@ -11,11 +11,12 @@ export default class UserService implements IUserService {
     });
     return emailUser;
   }
-}
 
-public UserLogin = async (credentials: ICredentials) => {
-  const userInformation : IUser | null = await UserService.findEMail(credentials.email);
-  if(!userInformation) return null;
-  const { id, email, role, username } = userInformation
-  const token = await JwtService.generateToken(userInformation);
+  public UserLogin = async (credentials: ICredentials) => {
+    const userInformation : IUser | null = await UserService.findEMail(credentials.email);
+    if (!userInformation) return null;
+    const { id, email, role, username } = userInformation;
+    const token = await JwtService.generateToken(userInformation);
+    return { user: { id, email, role, username }, token };
+  };
 }
