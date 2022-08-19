@@ -1,3 +1,5 @@
+// -|> trazendo da tabela  usuario
+
 export default interface IUser{
   id: number,
   username:string,
@@ -6,11 +8,9 @@ export default interface IUser{
   password: string,
 }
 
-// trazendo da tabela  usuario
+// -|> criando uma  interface para oque sera mandado para o login e validado
 
-// criando uma  interface para oque sera mandado para o login e validado
-
-export interface LoginResponse {
+export interface ILoginResponse {
   user: {
     id: number,
     username:string,
@@ -18,4 +18,11 @@ export interface LoginResponse {
     email: string,
     password: string,
   }
+}
+
+// -|> interface para colher as credencias cobradas no login
+
+export interface ICredentials{
+  email: string;
+  password: string;
 }
