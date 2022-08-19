@@ -13,23 +13,23 @@ module.exports = {
       },
 
       username: {
-        type: Sequelize.string,
+        type: Sequelize.STRING,
         allowNull: false,
       },
 
       role: {
-        type: Sequelize.string,
+        type: Sequelize.STRING,
         allowNull: false,
       },
 
       email: {
-        type: Sequelize.string,
+        type: Sequelize.STRING,
         allowNull: false,
         unique: true,
       },
 
       password: {
-        type: Sequelize.string,
+        type: Sequelize.STRING,
         allowNull: true,
       }
 
