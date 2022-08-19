@@ -1,5 +1,6 @@
 import Joi = require('joi');
 import { ICredentials } from '../interfaces/ILogin';
+import Errors from './Errors';
 
 export default class LoginValidate {
   static validateLogin = async (credentials : ICredentials): Promise<ICredentials> => {
@@ -12,6 +13,8 @@ export default class LoginValidate {
     });
     const { error } = usersInformations.validate(credentials);
     if (error?.message.includes('must be filled')) {
+      throw new Errors(401, error.message);
+      // -> Erros vem diretamente do MiddleWare de erro
     }
   };
 }
