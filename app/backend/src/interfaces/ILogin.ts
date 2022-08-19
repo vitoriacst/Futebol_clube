@@ -27,3 +27,7 @@ export interface ICredentials{
   email: string;
   password: string;
 }
+
+export interface IUserService {
+  login(credentials: ICredentials): Promise<ILoginResponse | null>;
+}
