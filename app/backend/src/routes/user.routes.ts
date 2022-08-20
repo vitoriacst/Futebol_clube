@@ -1,12 +1,8 @@
-import { Router } from 'express';
+import { Request, Response, Router } from 'express';
 import UserController from '../controllers/userController';
-import UserService from '../services/user.service';
 
-const userService = new UserService();
-const userController = new UserController(userService);
-
-const user = Router();
-
-user.post('/', userController.userLoginValidate);
+const user:Router = Router();
+user.post('/login', (req:Request, res: Response) => UserController.login(req, res));
+user.get('/users', (req:Request, res: Response) => UserController.getAllUsers(req, res));
 
 export default user;

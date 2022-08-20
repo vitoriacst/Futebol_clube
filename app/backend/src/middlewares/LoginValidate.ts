@@ -1,9 +1,8 @@
 import * as Joi from 'joi';
-import { ICredentials } from '../interfaces/ILogin';
 import Errors from './Errors';
 
 export default class LoginValidate {
-  static validateLogin = async (credentials : ICredentials): Promise<ICredentials> => {
+  static validateLogin = async (credentials: any) => {
     const message = 'All fields must be filled';
     const usersInformations = Joi.object({
       email: Joi.string().email().required().messages({
