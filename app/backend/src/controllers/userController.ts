@@ -3,8 +3,10 @@ import { IUserService } from '../interfaces/ILogin';
 import LoginValidate from '../middlewares/LoginValidate';
 
 export default class UserController {
-  constructor(private _userService: IUserService) {
+  private _userService: IUserService;
+  constructor(userService:IUserService) {
     this.userLoginValidate = this.userLoginValidate.bind(this);
+    this._userService = userService;
   }
 
   async userLoginValidate(response: Response, request: Request): Promise<void> {
@@ -12,6 +14,6 @@ export default class UserController {
     // puxando do middleware de validacao
     const result = await this._userService.login(request.body);
     // validando a existencia do token e retornando o status 200, caso o login seja efetuado com sucesso;
-    response.status(200).json({ token: result?.token });
+    response.status(200).json({ result });
   }
 }

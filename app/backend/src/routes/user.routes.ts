@@ -10,5 +10,3 @@ const user = Router();
 user.post('/', userController.userLoginValidate);
 
 export default user;
-
-// -> a

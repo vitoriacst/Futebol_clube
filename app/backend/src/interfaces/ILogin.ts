@@ -28,5 +28,5 @@ export interface ICredentials{
 }
 
 export interface IUserService {
-  login(credentials: ICredentials): Promise<ILoginResponse | null>;
+  login(credentials: ICredentials): Promise<string>;
 }
