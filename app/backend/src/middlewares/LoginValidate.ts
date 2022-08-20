@@ -1,4 +1,4 @@
-import Joi = require('joi');
+import * as Joi from 'joi';
 import { ICredentials } from '../interfaces/ILogin';
 import Errors from './Errors';
 
