@@ -10,12 +10,12 @@ export default class UserController {
   //   this._userService = userService;
   // }
 
-  static async login(response: Response, request: Request) {
+  static async login(request: Request, response: Response) {
     await LoginValidate.validateLogin(request.body);
     // puxando do middleware de validacao
-    const result = await UserService.login(request.body);
+    const token = await UserService.login(request.body);
     // validando a existencia do token e retornando o status 200, caso o login seja efetuado com sucesso;
-    response.status(200).json({ result });
+    response.status(200).json({ token });
   }
 
   static async getAllUsers(_req:Request, res: Response) {
