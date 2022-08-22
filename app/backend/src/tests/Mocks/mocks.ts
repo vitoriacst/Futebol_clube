@@ -12,3 +12,6 @@ export const loginMock = {
   password: '1234567'
 }
 
+export const tokenMock = {
+  token:'1234testes'
+}
