@@ -33,6 +33,7 @@
     "sinon": "^14.0.0"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "camelcase": "6.3.0",
     "express-async-errors": "^3.1.1",
     "http-status-codes": "2.2.0",
