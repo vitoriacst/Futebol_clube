@@ -43,10 +43,4 @@ export default class UserService {
     const model = await modelUsers.findAll();
     return model;
   };
-
-  // -|> criando um metodo para a validacao
-  static validateUser = async (token: string): Promise<string> => {
-    const check = JwtService.validateToken(token);
-    return check;
-  };
 }
