@@ -6,3 +6,9 @@ export const userDataMock = {
   role: 'teste',
   email: '123456'
 }
+
+export const loginMock = {
+  email: 'user@gmail.com',
+  password: '1234567'
+}
+
