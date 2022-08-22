@@ -30,8 +30,13 @@ export default class UserService {
 
     // const { id, email, role, username } = userInformation;
     // -|> gerando o token apartir das informacoes do usuario
-    const token = await JwtService.generateToken(userInformation);
-    return token;
+    const { id, role } = userInformation;
+    const payload = { data: { id, role } };
+    const options = {
+      expiresIn: '1d',
+    };
+    const token = await JwtService.generateToken(payload, options);
+    return { token };
   };
 
   static getAllUsers = async () => {

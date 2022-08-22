@@ -1,12 +1,16 @@
-import { sign } from 'jsonwebtoken';
-import { IUser } from '../interfaces/ILogin';
+import { JwtPayload, Secret, sign, SignOptions, verify } from 'jsonwebtoken';
+import { IJwtPayload } from '../interfaces/ILogin';
 
-const tokenSecret = process.env.JWT_SECRET || 'secret';
+const secret: Secret = process.env.JWT_SECRET || 'secret';
 
 export default class JwtService {
-  static async generateToken(credentials: IUser): Promise<string> {
-    const { password, ...data } = credentials;
-    const token: string = sign({ data }, tokenSecret, { expiresIn: '5d' });
+  static async generateToken(payload: JwtPayload, options: SignOptions): Promise<string> {
+    const token: string = sign(payload, secret, options);
     return token;
   }
+
+  static validateToken = async (token: string): Promise<string> => {
+    const { data: { role } } = verify(token, secret) as IJwtPayload;
+    return role;
+  };
 }

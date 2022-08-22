@@ -1,5 +1,7 @@
 // -|> trazendo da tabela  usuario
 
+import { JwtPayload } from 'jsonwebtoken';
+
 export interface IUser{
   id: number,
   username:string,
@@ -30,4 +32,10 @@ export interface ICredentials{
 export interface IUserService {
   login(credentials: ICredentials): Promise<string>;
   getAllUsers():object[]
+}
+
+export interface IJwtPayload extends JwtPayload{
+  data: {
+    role: string;
+  }
 }
