@@ -1,5 +1,5 @@
 import * as Joi from 'joi';
-import Errors from './Errors';
+import Errors from '../middlewares/Errors';
 
 export default class LoginValidate {
   static validateLogin = async (credentials: any) => {

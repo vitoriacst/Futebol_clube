@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import LoginValidate from '../middlewares/LoginValidate';
+import LoginValidate from '../services/LoginValidate';
 import UserService from '../services/user.service';
 // import { IUserService } from '../interfaces/ILogin';
 
