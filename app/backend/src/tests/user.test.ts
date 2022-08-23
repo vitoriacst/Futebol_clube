@@ -25,5 +25,7 @@ describe('🧪 Check if the login was successful', () => {
     it('🧪 checks if status 200 is returned after all data filled in by the user is valid',async()=>{
       const response = await chai.request(app).post('/login').send(userDataMock);
       // -> realizando o envio do mock para a rota post '/login'
+      chai.expect(response.status).to.equal(200);
+      chai.expect(response.body).to.deep.equal(tokenMock);
     })
  })
