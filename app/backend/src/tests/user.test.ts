@@ -6,7 +6,7 @@ import { app } from '../app';
 import modelUsers from '../database/models/users.model';
 import Encrypt from '../services/encrypt.service';
 import JwtService from '../services/Jwt.service';
-import { notHaveEmail, notHavePassword, tokenMock, userDataMock } from './Mocks/mocksUser';
+import { incorrectPassword, notHaveEmail, notHavePassword, tokenMock, userDataMock } from './Mocks/mocksUser';
 // lib
 import chaiHttp = require('chai-http');
 
@@ -45,5 +45,12 @@ describe('🧪 Check if the login was successful', () => {
       chai.expect(response.body).to.deep.equal({
         message: 'All fields must be filled',
       });
+    })
+    it('🧪 check if 401 status is returned for previous password when sent to login',async()=>{
+      const response = await chai.request(app).post('/login').send(incorrectPassword);
+        chai.expect(response.status).to.equal(400);
+        chai.expect(response.body).to.deep.equal({
+          message: 'Incorrect email or password',
+        });
     })
   })
