@@ -12,7 +12,7 @@ import chaiHttp = require('chai-http');
 
 chai.use(chaiHttp)
 
-describe('Check if the login was successful', () => {
+describe('🧪 Check if the login was successful', () => {
   beforeEach(()=>{
     sinon.stub(Encrypt, 'validatePassword').returns(true);
     sinon.stub(modelUsers, 'findOne').resolves( userDataMock as modelUsers)
@@ -21,4 +21,7 @@ describe('Check if the login was successful', () => {
   afterEach(()=>{
     sinon.restore();
   })
+    it('🧪 checks if status 200 is returned after all data filled in by the user is valid',()=>{
+
+    })
  })
