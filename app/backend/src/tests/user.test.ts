@@ -6,7 +6,7 @@ import { app } from '../app';
 import modelUsers from '../database/models/users.model';
 import Encrypt from '../services/encrypt.service';
 import JwtService from '../services/Jwt.service';
-import { tokenMock, userDataMock } from './Mocks/mocksUser';
+import { notHaveEmail, tokenMock, userDataMock } from './Mocks/mocksUser';
 // lib
 import chaiHttp = require('chai-http');
 
@@ -33,6 +33,10 @@ describe('🧪 Check if the login was successful', () => {
 
  describe('🧪  checks the errors returned by the executions during login', () => {
     it('🧪 checks if status 400 is returned if email is not provided during login',async()=>{
-      const response = await chai.request(app).post('/login').send()
+      const response = await chai.request(app).post('/login').send(notHaveEmail);
+      chai.expect(response.status).to.equal(400);
+      chai.expect(response.body).to.deep.equal({
+        message: 'All fields must be filled',
+      });
     })
   })
