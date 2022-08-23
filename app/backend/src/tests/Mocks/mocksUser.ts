@@ -24,3 +24,10 @@ export const notHavePassword = {
   email: 'user@gmail.com',
 }
 
+export const incorrectPassword = {
+  password: '12345'
+}
+
+export const incorrectEmail =  {
+  email: 'usuario@gmail.com',
+}
