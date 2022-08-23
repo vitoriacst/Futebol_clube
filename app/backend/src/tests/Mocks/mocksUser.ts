@@ -15,3 +15,8 @@ export const loginMock = {
 export const tokenMock = {
   token:'1234testes'
 }
+
+export const notHaveEmail = {
+  password: '1234567'
+}
+

@@ -31,8 +31,8 @@ describe('🧪 Check if the login was successful', () => {
  })
 
 
- describe('checks the errors returned by the executions during login', () => {
-    it('checks if status 400 is returned if email is not provided during login',async()=>{
-      
+ describe('🧪  checks the errors returned by the executions during login', () => {
+    it('🧪 checks if status 400 is returned if email is not provided during login',async()=>{
+      const response = await chai.request(app).post('/login').send()
     })
   })
