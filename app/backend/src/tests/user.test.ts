@@ -18,4 +18,7 @@ describe('Check if the login was successful', () => {
     sinon.stub(modelUsers, 'findOne').resolves( userDataMock as modelUsers)
     sinon.stub(JwtService, 'generateToken').resolves(tokenMock.token)
   })
+  afterEach(()=>{
+    sinon.restore();
+  })
  })
