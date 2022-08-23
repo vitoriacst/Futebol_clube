@@ -29,3 +29,10 @@ describe('🧪 Check if the login was successful', () => {
       chai.expect(response.body).to.deep.equal(tokenMock);
     })
  })
+
+
+ describe('checks the errors returned by the executions during login', () => {
+    it('checks if status 400 is returned if email is not provided during login',async()=>{
+      
+    })
+  })
