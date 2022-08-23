@@ -38,7 +38,7 @@ export default class UserService {
   };
 
   // -|> criando um metodo para a validacao
-  static validateUser = async (token: string): Promise<string> => {
+  static validateUser = async (token: string) => {
     const check = JwtService.validateToken(token);
     return check;
   };

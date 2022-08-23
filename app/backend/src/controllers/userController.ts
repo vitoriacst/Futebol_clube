@@ -1,15 +1,8 @@
 import { Request, Response } from 'express';
 import LoginValidate from '../services/LoginValidate';
 import UserService from '../services/user.service';
-// import { IUserService } from '../interfaces/ILogin';
 
 export default class UserController {
-  // private _userService: IUserService;
-  // constructor(userService:IUserService) {
-  //   this.login = this.login.bind(this);
-  //   this._userService = userService;
-  // }
-
   static async login(request: Request, response: Response) {
     await LoginValidate.validateLogin(request.body);
     // puxando do middleware de validacao
@@ -24,8 +17,9 @@ export default class UserController {
   }
 
   static validateUser = async (request: Request, response: Response): Promise<void> => {
-    const token = request.headers.authorization || '';
-    const role = await UserService.validateUser(token);
+    const { authorization } = request.headers;
+    if (!authorization) throw new Error('Invalid Token');
+    const role = await UserService.validateUser(authorization);
     response.status(200).json({ role });
   };
 }

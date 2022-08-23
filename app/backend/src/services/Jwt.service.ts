@@ -1,7 +1,10 @@
-import { JwtPayload, Secret, sign, verify } from 'jsonwebtoken';
+import * as dotenv from 'dotenv';
+import { JwtPayload, sign, verify } from 'jsonwebtoken';
 import { IJwtPayload } from '../interfaces/ILogin';
 
-const secret: Secret = process.env.JWT_SECRET || 'secret';
+dotenv.config();
+
+const secret = process.env.JWT_SECRET || 'secret';
 
 export default class JwtService {
   static async generateToken(payload: JwtPayload): Promise<string> {
@@ -9,8 +12,8 @@ export default class JwtService {
     return token;
   }
 
-  static validateToken = async (token: string): Promise<string> => {
-    const { data: { role } } = verify(token, secret) as IJwtPayload;
-    return role;
+  static validateToken = async (token: string) => {
+    const role = verify(token, secret) as IJwtPayload;
+    return role.role;
   };
 }
