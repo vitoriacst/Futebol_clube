@@ -9,7 +9,7 @@ import { app } from '../app';
 import modelUsers from '../database/models/users.model';
 import Encrypt from '../services/encrypt.service';
 import JwtService from '../services/Jwt.service';
-import { incorrectPassword, notHaveEmail, notHavePassword, tokenMock, userDataMock } from './Mocks/mocksUser';
+import { incorrectEmail, incorrectPassword, notHaveEmail, notHavePassword, roleMock, tokenMock, userDataMock } from './Mocks/mocksUser';
 // lib
 
 
@@ -59,11 +59,26 @@ describe('🧪 Check if the login was successful', () => {
           message: 'Incorrect email or password',
         });
     });
-    // it('🧪 check if 401 status is returned for previous email when sent to login',async()=>{
-    //   const response = await chai.request(app).post('/login').send(incorrectEmail);
-    //     chai.expect(response.status).to.equal(401);
-    //     chai.expect(response.body).to.deep.equal({
-    //       message: 'Incorrect email or password',
-    //     });
-    // });
+    it('🧪 check if 401 status is returned for previous email when sent to login',async()=>{
+      const response = await chai.request(app).post('/login').send(incorrectEmail);
+        chai.expect(response.status).to.equal(401);
+        chai.expect(response.body).to.deep.equal({
+          message: 'Incorrect email or password',
+        });
+    });
   })
+
+
+  describe('🧪 Check if the login/validate route', () => {
+    beforeEach(()=>{
+      sinon.stub(JwtService,'validateToken').resolves('admin');
+    })
+    afterEach(()=>{
+      sinon.restore();
+    })
+      it('🧪 checks if the status 200 is informed after the user informs the token',async()=>{
+        const response = await chai.request(app).get('/login/validate').set('authorization' , tokenMock.token);
+        chai.expect(response.status).to.equal(200);
+        chai.expect(response.body).to.deep.equal(roleMock);
+      })
+   })
