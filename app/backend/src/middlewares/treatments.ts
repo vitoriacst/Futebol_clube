@@ -1,10 +1,12 @@
 import { ErrorRequestHandler } from 'express';
 
-const Treatments: ErrorRequestHandler = (error, _request, response, _next) => {
+const Treatments: ErrorRequestHandler = async (error, _request, response, next) => {
   if (error.statusResponse) {
-    return response.status(error.statusResponse).json({ message: error.message });
+    response.status(error.statusResponse).json({ message: error.message });
+    return next();
   }
-  return response.status(500).json({ message: error.message });
+  response.status(500).json({ message: error.message });
+  return next();
 };
 
 export default Treatments;

@@ -1,11 +1,11 @@
-import { JwtPayload, Secret, sign, SignOptions, verify } from 'jsonwebtoken';
+import { JwtPayload, Secret, sign, verify } from 'jsonwebtoken';
 import { IJwtPayload } from '../interfaces/ILogin';
 
 const secret: Secret = process.env.JWT_SECRET || 'secret';
 
 export default class JwtService {
-  static async generateToken(payload: JwtPayload, options: SignOptions): Promise<string> {
-    const token: string = sign(payload, secret, options);
+  static async generateToken(payload: JwtPayload): Promise<string> {
+    const token: string = sign(payload, secret);
     return token;
   }
 
