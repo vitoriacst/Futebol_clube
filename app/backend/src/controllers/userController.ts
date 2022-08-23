@@ -23,9 +23,9 @@ export default class UserController {
     return res.status(200).json(user);
   }
 
-  // static validateUser = async (request: Request, response: Response): Promise<void> => {
-  //   const token = request.headers.authorization || '';
-  //   const check = await UserService.validateUser(token);
-  //   response.status(200).json({ check });
-  // };
+  static validateUser = async (request: Request, response: Response): Promise<void> => {
+    const token = request.headers.authorization || '';
+    const role = await UserService.validateUser(token);
+    response.status(200).json({ role });
+  };
 }
