@@ -1,3 +1,4 @@
 joi
 express-async-errors
 bcrypt
+chai-http
