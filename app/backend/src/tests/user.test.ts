@@ -2,6 +2,7 @@
 import * as chai from 'chai';
 import * as sinon from 'sinon';
 // arquivos
+import { app } from '../app';
 import modelUsers from '../database/models/users.model';
 import Encrypt from '../services/encrypt.service';
 import JwtService from '../services/Jwt.service';
@@ -21,7 +22,8 @@ describe('🧪 Check if the login was successful', () => {
   afterEach(()=>{
     sinon.restore();
   })
-    it('🧪 checks if status 200 is returned after all data filled in by the user is valid',()=>{
-
+    it('🧪 checks if status 200 is returned after all data filled in by the user is valid',async()=>{
+      const response = await chai.request(app).post('/login').send(userDataMock);
+      // -> realizando o envio do mock para a rota post '/login'
     })
  })
