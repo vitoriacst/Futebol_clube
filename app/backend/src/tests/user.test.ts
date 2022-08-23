@@ -8,7 +8,7 @@ import Encrypt from '../services/encrypt.service';
 import JwtService from '../services/Jwt.service';
 import { incorrectEmail, incorrectPassword, notHaveEmail, notHavePassword, tokenMock, userDataMock } from './Mocks/mocksUser';
 // lib
-import chaiHttp = require('chai-http');
+import chaiHttp from 'chai-http';
 
 
 chai.use(chaiHttp)
