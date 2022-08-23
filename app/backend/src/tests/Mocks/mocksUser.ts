@@ -20,3 +20,7 @@ export const notHaveEmail = {
   password: '1234567'
 }
 
+export const notHavePassword = {
+  email: 'user@gmail.com',
+}
+
