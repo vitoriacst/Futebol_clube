@@ -1,9 +1,12 @@
 // -|> iniciando os testes da rota Login 🚀
 import * as chai from 'chai';
 import * as sinon from 'sinon';
+// arquivos
+import modelUsers from '../database/models/users.model';
 import Encrypt from '../services/encrypt.service';
 import JwtService from '../services/Jwt.service';
-import { tokenMock } from './Mocks/mocksUser';
+import { tokenMock, userDataMock } from './Mocks/mocksUser';
+// lib
 import chaiHttp = require('chai-http');
 
 
@@ -12,6 +15,7 @@ chai.use(chaiHttp)
 describe('Check if the login was successful', () => {
   beforeEach(()=>{
     sinon.stub(Encrypt, 'validatePassword').returns(true);
+    sinon.stub(modelUsers, 'findOne').resolves( userDataMock as modelUsers)
     sinon.stub(JwtService, 'generateToken').resolves(tokenMock.token)
   })
  })
