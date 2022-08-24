@@ -11,4 +11,6 @@ application.get('/login/validate', (req:Request, res: Response) =>
 
 application.get('/teams', (req:Request, res: Response) => TeamController.getAll(req, res));
 
+application.get('/teams/:id', (req:Request, res: Response) => TeamController.getById(req, res));
+
 export default application;

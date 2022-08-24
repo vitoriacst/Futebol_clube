@@ -8,8 +8,8 @@ export default class TeamService {
     return team;
   };
 
-  static getById = async (id: number): Promise<Teams> => {
-    const team: Teams | null = await Teams.findByPk(id);
+  static getById = async (id: number) => {
+    const team = await Teams.findByPk(id);
     // -> O método findByPk obtém apenas uma única entrada da tabela, usando a chave primária fornecida.
     if (!team) throw new Errors(404, 'No team was found with this');
     return team;
