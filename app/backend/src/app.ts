@@ -1,7 +1,7 @@
 import * as express from 'express';
 import 'express-async-errors';
 import Treatments from './middlewares/treatments';
-import user from './routes/user.routes';
+import application from './routes/routes';
 
 class App {
   public app: express.Express;
@@ -27,7 +27,7 @@ class App {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(accessControl);
-    this.app.use(user);
+    this.app.use(application);
   }
 
   public start(PORT: string | number):void {

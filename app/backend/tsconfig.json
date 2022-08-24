@@ -18,6 +18,6 @@
       "*": ["node_modules/*"]
     }
   },
-  "include": ["src/**/*", "src/services/encrypt.service.ts"],
+  "include": ["src/**/*", "src/services/encrypt.service.ts", "src/routes/routes.ts"],
   "exclude": ["src/tests"]
 }

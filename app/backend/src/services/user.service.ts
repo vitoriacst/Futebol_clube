@@ -20,6 +20,8 @@ export default class UserService {
     if (!userInformation) {
       throw new Errors(401, 'Incorrect email or password');
     }
+    console.log(userInformation);
+
     if (!EncryptService.validatePassword(credentials.password, userInformation.password)) {
       throw new Errors(401, 'Incorrect email or password');
     }
