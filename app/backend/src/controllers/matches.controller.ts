@@ -19,6 +19,7 @@ export default class MatchController {
     inProgress: string,
     response: Response,
   ) {
-
+    const result = await MatchService.getAllProgress(inProgress);
+    response.status(200).json(result);
   }
 }
