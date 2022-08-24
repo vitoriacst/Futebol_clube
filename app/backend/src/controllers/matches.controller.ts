@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import Errors from '../middlewares/Errors';
 import JwtService from '../services/Jwt.service';
 import MatchService from '../services/match.service';
-import TeamService from '../services/team.service';
+// import TeamService from '../services/team.service';
 
 export default class MatchController {
   static async getAll(request: Request, response: Response) {
@@ -33,8 +33,8 @@ export default class MatchController {
       throw new Errors(401, 'impossible combination, both are the same team');
     }
     await JwtService.validateToken(token);
-    await Promise.all([TeamService.getById(homeTeam), TeamService.getById(awayTeam)]);
-    const result = await MatchService.saveMatch();
+    // await Promise.all([TeamService.getById(homeTeam), TeamService.getById(awayTeam)]);
+    const result = await MatchService.saveMatch(request.body);
     response.status(200).json(result);
   }
 

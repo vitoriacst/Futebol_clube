@@ -1,4 +1,3 @@
-import { match } from 'assert';
 import Match from '../database/models/matches.model';
 import Teams from '../database/models/team.model';
 
@@ -59,7 +58,7 @@ export default class MatchService {
     return matches;
   };
 
-  static saveMatch = async () : Promise<Match> => {
+  static saveMatch = async (match:object) : Promise<Match> => {
     const result = await Match.create({
       ...match,
       inProgress: true,

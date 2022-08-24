@@ -21,7 +21,7 @@ application.get(
 application.post('/matches', (request, response) => MatchController.saveMatch(request, response));
 
 application.patch(
-  '/:id/finish',
+  'matches/:id/finish',
   (request, response) => MatchController.finallyMatch(request, response),
 );
 
