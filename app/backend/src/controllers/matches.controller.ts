@@ -30,7 +30,7 @@ export default class MatchController {
     const { homeTeam, awayTeam } = request.body;
     const token = request.headers.authorization || '';
     if (homeTeam === awayTeam) {
-      throw new Errors(401, 'impossible combination, both are the same team');
+      throw new Errors(401, 'It is not possible to create a match with two equal teams');
     }
     await JwtService.validateToken(token);
     // await Promise.all([TeamService.getById(homeTeam), TeamService.getById(awayTeam)]);
@@ -40,7 +40,7 @@ export default class MatchController {
 
   static async finallyMatch(request: Request, response: Response) {
     const { id } = request.params;
-    const result = await MatchService.finallyMatch(Number(id));
-    response.status(200).json(result);
+    await MatchService.finallyMatch(Number(id));
+    response.status(200).json({ message: 'Finished' });
   }
 }
