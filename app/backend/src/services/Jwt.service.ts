@@ -1,6 +1,7 @@
 import * as dotenv from 'dotenv';
 import { JwtPayload, sign, verify } from 'jsonwebtoken';
 import { IJwtPayload } from '../interfaces/ILogin';
+import Errors from '../middlewares/Errors';
 
 dotenv.config();
 
@@ -13,7 +14,12 @@ export default class JwtService {
   }
 
   static validateToken = async (token: string) => {
-    const role = verify(token, secret) as IJwtPayload;
-    return role.role;
+    try {
+      const { data: { role } } = verify(token, secret) as IJwtPayload;
+      if (!role) throw new Errors(401, 'Token must be a valid token');
+      return role;
+    } catch (error) {
+      throw new Errors(401, 'Token must be a valid token');
+    }
   };
 }
