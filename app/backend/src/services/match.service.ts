@@ -36,7 +36,7 @@ import Teams from '../database/models/team.model';
 // }
 
 export default class MatchService {
-  static getAll = async () => {
+  public getAll = async () => {
     const matches = await Match.findAll({
       include: [
         { model: Teams, as: 'teamHome', attributes: ['teamName'] },
@@ -47,7 +47,7 @@ export default class MatchService {
   };
 
   // vai pegar todos que tenham a chave inprogress
-  static getAllProgress = async (inProgress: string): Promise<Match[]> => {
+  public getAllProgress = async (inProgress: string): Promise<Match[]> => {
     const matches = await Match.findAll({
       include: [
         { model: Teams, as: 'teamHome', attributes: ['teamName'] },
