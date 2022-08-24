@@ -8,4 +8,8 @@ export default class TeamController {
     console.log(result);
     response.status(200).json(result);
   }
+
+  static async getById(_request:Request, response: Response) {
+
+  }
 }
