@@ -14,4 +14,11 @@ export default class MatchController {
     }
     response.status(200).json(result);
   }
+
+  static async getAllProgress(
+    inProgress: string,
+    response: Response,
+  ) {
+
+  }
 }
