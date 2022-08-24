@@ -18,7 +18,7 @@ application.get(
   '/matches',
   (req:Request, res: Response) => MatchController.getAll(req, res),
 );
-application.post('/', (request, response) => MatchController.saveMatch(request, response));
+application.post('/matches', (request, response) => MatchController.saveMatch(request, response));
 
 application.patch(
   '/:id/finish',
