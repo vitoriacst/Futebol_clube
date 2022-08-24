@@ -1,4 +1,5 @@
 import Teams from '../database/models/team.model';
+import Errors from '../middlewares/Errors';
 
 export default class TeamService {
   // => forma que ele possa retornar todos os times corretamente
@@ -7,7 +8,10 @@ export default class TeamService {
     return team;
   };
 
-  static getById = async () => {
-
+  static getById = async (id: number): Promise<Teams> => {
+    const team: Teams | null = await Teams.findByPk(id);
+    // -> O método findByPk obtém apenas uma única entrada da tabela, usando a chave primária fornecida.
+    if (!team) throw new Errors(404, 'No team was found with this');
+    return team;
   };
 }
