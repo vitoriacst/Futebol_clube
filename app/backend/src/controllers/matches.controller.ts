@@ -37,4 +37,10 @@ export default class MatchController {
     const result = await MatchService.saveMatch();
     response.status(200).json(result);
   }
+
+  static async finallyMatch(request: Request, response: Response) {
+    const { id } = request.params;
+    const result = await MatchService.finallyMatch(Number(id));
+    response.status(200).json(result);
+  }
 }
