@@ -1,3 +1,4 @@
+import { IMatch } from '../interfaces/Match.interface';
 import Match from '../database/models/matches.model';
 import Teams from '../database/models/team.model';
 
@@ -75,5 +76,17 @@ export default class MatchService {
         where: { id },
       },
     );
+  };
+
+  static updateMatch = async (id: number, match: IMatch) => {
+    await Match.update(match, { where: { id } });
+    const result = await Match.findAll({
+      include: [
+        { model: Teams, as: 'teamHome', attributes: ['teamName'] },
+        { model: Teams, as: 'teamAway', attributes: ['teamName'] },
+      ],
+      where: { id },
+    });
+    return result;
   };
 }
