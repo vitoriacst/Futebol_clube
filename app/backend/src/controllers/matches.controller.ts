@@ -43,4 +43,10 @@ export default class MatchController {
     await MatchService.finallyMatch(Number(id));
     response.status(200).json({ message: 'Finished' });
   }
+
+  static async updateMatch(request: Request, response: Response) {
+    const { id } = request.params;
+    const result = await MatchService.updateMatch(Number(id), request.body);
+    response.status(200).json(result);
+  }
 }
