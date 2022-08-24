@@ -45,4 +45,16 @@ export default class MatchService {
     });
     return matches;
   };
+
+  // vai pegar todos que tenham a chave inprogress
+  static getAllProgress = async (inProgress: string): Promise<Match[]> => {
+    const matches = await Match.findAll({
+      include: [
+        { model: Teams, as: 'teamHome', attributes: ['teamName'] },
+        { model: Teams, as: 'teamAway', attributes: ['teamName'] },
+      ],
+      where: { inProgress },
+    });
+    return matches;
+  };
 }
