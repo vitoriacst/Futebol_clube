@@ -7,5 +7,5 @@ export interface ITeam{
 
 export interface ITeamService {
   getAll(): Promise<Teams[]>,
-  // getById(id: number): Promise<Teams>
+  getById(id: number): Promise<Teams>
 }

@@ -6,4 +6,8 @@ export default class TeamService {
     const team : Teams[] = await Teams.findAll();
     return team;
   };
+
+  static getById = async () => {
+
+  };
 }
