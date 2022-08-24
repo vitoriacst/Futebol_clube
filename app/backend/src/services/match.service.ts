@@ -59,7 +59,7 @@ export default class MatchService {
     return matches;
   };
 
-  static saveMatch = async () => {
+  static saveMatch = async () : Promise<Match> => {
     const result = await Match.create({
       ...match,
       inProgress: true,
