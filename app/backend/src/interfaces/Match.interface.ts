@@ -1,4 +1,3 @@
-
 export interface IMatch {
   id: number;
   homeTeam: number;
