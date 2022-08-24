@@ -28,14 +28,14 @@ export default class MatchController {
 
   static async saveMatch(request: Request, response: Response) : Promise<void> {
     const { homeTeam, awayTeam } = request.body;
+
     const token = request.headers.authorization || '';
     if (homeTeam === awayTeam) {
       throw new Errors(401, 'It is not possible to create a match with two equal teams');
     }
     await JwtService.validateToken(token);
-    // await Promise.all([TeamService.getById(homeTeam), TeamService.getById(awayTeam)]);
     const result = await MatchService.saveMatch(request.body);
-    response.status(200).json(result);
+    response.status(201).json(result);
   }
 
   static async finallyMatch(request: Request, response: Response) {

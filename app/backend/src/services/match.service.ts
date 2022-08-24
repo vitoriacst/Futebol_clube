@@ -1,6 +1,6 @@
-import { IMatch } from '../interfaces/Match.interface';
 import Match from '../database/models/matches.model';
 import Teams from '../database/models/team.model';
+import { IMatch } from '../interfaces/Match.interface';
 
 // {
 //   [
@@ -59,7 +59,7 @@ export default class MatchService {
     return matches;
   };
 
-  static saveMatch = async (match:object) : Promise<Match> => {
+  static saveMatch = async (match:IMatch) : Promise<Match> => {
     const result = await Match.create({
       ...match,
       inProgress: true,

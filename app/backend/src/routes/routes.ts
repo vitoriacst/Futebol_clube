@@ -18,16 +18,17 @@ application.get(
   '/matches',
   (req:Request, res: Response) => MatchController.getAll(req, res),
 );
-application.post('/matches', (request, response) => MatchController.saveMatch(request, response));
 
 application.patch(
-  'matches/:id/finish',
+  '/matches/:id/finish',
   (request, response) => MatchController.finallyMatch(request, response),
 );
 
 application.patch(
-  'matches/:id',
+  '/matches/:id',
   (request, response) => MatchController.updateMatch(request, response),
 );
+
+application.post('/matches', (request, response) => MatchController.saveMatch(request, response));
 
 export default application;
