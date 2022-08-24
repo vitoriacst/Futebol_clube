@@ -25,4 +25,9 @@ application.patch(
   (request, response) => MatchController.finallyMatch(request, response),
 );
 
+application.patch(
+  'matches/:id',
+  (request, response) => MatchController.updateMatch(request, response),
+);
+
 export default application;
