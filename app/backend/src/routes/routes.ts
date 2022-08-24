@@ -20,4 +20,9 @@ application.get(
 );
 application.post('/', (request, response) => MatchController.saveMatch(request, response));
 
+application.patch(
+  '/:id/finish',
+  (request, response) => MatchController.finallyMatch(request, response),
+);
+
 export default application;
