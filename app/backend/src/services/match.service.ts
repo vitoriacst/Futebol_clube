@@ -66,4 +66,15 @@ export default class MatchService {
     });
     return result;
   };
+
+  static finallyMatch = async (id: number) => {
+    await Match.update(
+      {
+        inProgress: false,
+      },
+      {
+        where: { id },
+      },
+    );
+  };
 }
