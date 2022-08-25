@@ -1,8 +1,7 @@
-import { IMatch } from '../interfaces/Match.interface';
 import MatchService from './match.service';
 
 export default class LeaderBoardService {
-  static matchesHomeTeam = async (teamId: number): Promise<IMatch> => {
+  static matchesHomeTeam = async (teamId: number) => {
     const matches = await MatchService.getAllProgress('false');
     // => validando o id
     const HomeTeam = matches.filter(({ homeTeam }) => homeTeam === teamId);
@@ -11,6 +10,9 @@ export default class LeaderBoardService {
     // => total de vitorias
     const victories = HomeTeam.filter((element) => element.homeTeamGoals > element.awayTeamGoals);
     // total de partidas perdidas
-    const Losses = HomeTeam.filter((element) => element.homeTeamGoals < element.awayTeamGoals);
+    const losses = HomeTeam.filter((element) => element.homeTeamGoals < element.awayTeamGoals);
+    // => total de partidas
+    const soccerMatches = HomeTeam.length;
+    return { draws, victories, losses, soccerMatches };
   };
 }
