@@ -20,5 +20,6 @@ export interface IScore{
   goalsFavor:number,
   goalsOwn: number,
   goalsTotal: number,
-  efficiency: string
+  efficiency: string,
+  totalDraws: number
 }
