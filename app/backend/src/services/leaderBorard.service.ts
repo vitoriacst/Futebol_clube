@@ -9,5 +9,8 @@ export default class LeaderBoardService {
     // => total de empates
     const draws = HomeTeam.filter((element) => element.homeTeamGoals === element.awayTeamGoals);
     // => total de vitorias
+    const victories = HomeTeam.filter((element) => element.homeTeamGoals > element.awayTeamGoals);
+    // total de partidas perdidas
+    const Losses = HomeTeam.filter((element) => element.homeTeamGoals < element.awayTeamGoals);
   };
 }
