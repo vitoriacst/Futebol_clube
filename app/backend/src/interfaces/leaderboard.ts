@@ -4,3 +4,8 @@ export interface IMatches {
   totalLosses:number,
   totalGames: number
 }
+
+export interface IGoals {
+  goalsFavor: number;
+  goalsOwn: number
+}
