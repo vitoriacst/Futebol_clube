@@ -30,4 +30,8 @@ export default class LeaderBoardService {
     const soccerMatches = AwayTeam.length;
     return { draws, victories, losses, soccerMatches };
   };
+
+  static goals = async(teamId: number) => {
+    
+  }
 }
