@@ -1,3 +1,4 @@
+import { ITeam } from '../interfaces/Teams.interface';
 import MatchService from './match.service';
 
 export default class LeaderBoardService {
@@ -61,5 +62,11 @@ export default class LeaderBoardService {
       return acc;
     }, 0);
     return { favor, own };
+  };
+
+  static scoreHome = async (team:ITeam) => {
+    const matches = await this.matchesHomeTeam(team.id);
+    const { favor, own } = await this.goalsAway(team.id);
+    const { draws, victories, losses, soccerMatches } = matches;
   };
 }
