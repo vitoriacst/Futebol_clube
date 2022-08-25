@@ -1,5 +1,6 @@
 import { ITeam } from '../interfaces/Teams.interface';
 import MatchService from './match.service';
+import TeamService from './team.service';
 
 export default class LeaderBoardService {
   static matchesHomeTeam = async (teamId: number) => {
@@ -130,7 +131,20 @@ export default class LeaderBoardService {
     return teamScore;
   };
 
-  // static team = async (chooseTeam : string) => {
-  //   const teams =
-  // }
+  static chooseTeams = async (chooseTeam: 'home' | 'away') => {
+    const Teams = await TeamService.getAll();
+    const Scores = [];
+    for (let index = 0; index < Teams.length; index += 1) {
+      if (chooseTeam === 'home') {
+        const score = this.scoreHome(Teams[index]);
+        Scores.push(score);
+      }
+      if (chooseTeam === 'away') {
+        const score = this.scoreAway(Teams[index]);
+        Scores.push(score);
+      }
+    }
+    const result = await Promise.all(Scores);
+    return result;
+  };
 }
