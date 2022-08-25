@@ -33,7 +33,7 @@ export default class LeaderBoardService {
 
   // => relembrando reduce - O valor de retorno da sua função reducer é atribuída ao acc. O acc, com seu valor atualizado, é repassado para cada iteração subsequente pelo array, que por fim, se tornará o valor resultante, único, final.
 
-  static goals = async (teamId: number) => {
+  static goalsHome = async (teamId: number) => {
     const matches = await MatchService.getAllProgress('false');
     // =>  total de gols a favor do time da casa
     const favor = matches.reduce((acc, match) => {
@@ -43,6 +43,21 @@ export default class LeaderBoardService {
     // =>  total de gols contra do time da casa
     const own = matches.reduce((acc, match) => {
       if (match.homeTeam === teamId) return acc + match.awayTeam;
+      return acc;
+    }, 0);
+    return { favor, own };
+  };
+
+  static goalsAway = async (teamId: number) => {
+    const matches = await MatchService.getAllProgress('false');
+    // =>  total de gols a favor do time da casa
+    const favor = matches.reduce((acc, match) => {
+      if (match.awayTeam === teamId) return acc + match.awayTeamGoals;
+      return acc;
+    }, 0);
+    // =>  total de gols contra do time da casa
+    const own = matches.reduce((acc, match) => {
+      if (match.awayTeam === teamId) return acc + match.awayTeamGoals;
       return acc;
     }, 0);
     return { favor, own };
