@@ -109,4 +109,28 @@ export default class LeaderBoardService {
     };
     return teamScore;
   };
+
+  static scoreAway = async (team:ITeam) => {
+    const matches = await this.matchesHomeTeam(team.id);
+    const { totalDraws, totalVictories, totalGames, totalLosses } = matches;
+    const { goalsFavor, goalsOwn } = await this.goalsAway(team.id);
+    const totalPoints = totalVictories * 3 + totalDraws * 1;
+    const teamScore = {
+      name: team.teamName,
+      totalPoints,
+      goalsFavor,
+      goalsOwn,
+      totalDraws,
+      totalVictories,
+      totalGames,
+      totalLosses,
+      goalsBalance: goalsFavor - goalsOwn,
+      efficiency: ((totalPoints / (totalGames * 3)) * 100).toFixed(2),
+    };
+    return teamScore;
+  };
+
+  // static team = async (chooseTeam : string) => {
+  //   const teams =
+  // }
 }
