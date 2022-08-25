@@ -2,6 +2,10 @@ import { ITeam } from '../interfaces/Teams.interface';
 import MatchService from './match.service';
 import TeamService from './team.service';
 
+const sortResult = () => {
+
+};
+
 export default class LeaderBoardService {
   static matchesHomeTeam = async (teamId: number) => {
     const matches = await MatchService.getAllProgress('false');
@@ -96,6 +100,7 @@ export default class LeaderBoardService {
     const { goalsFavor, goalsOwn } = await this.goalsAway(team.id);
     const { totalDraws, totalVictories, totalGames, totalLosses } = matches;
     const totalPoints = totalVictories * 3 + totalDraws * 1;
+
     const teamScore = {
       name: team.teamName,
       totalPoints,
@@ -130,6 +135,8 @@ export default class LeaderBoardService {
     };
     return teamScore;
   };
+
+  // - criterios do resultado
 
   static chooseTeams = async (chooseTeam: 'home' | 'away') => {
     const Teams = await TeamService.getAll();
