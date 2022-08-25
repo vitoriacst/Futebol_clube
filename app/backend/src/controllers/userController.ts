@@ -18,8 +18,8 @@ export default class UserController {
 
   static validateUser = async (request: Request, response: Response): Promise<void> => {
     const { authorization } = request.headers;
-    if (!authorization) throw new Error('Invalid Token');
-    const role = await UserService.validateUser(authorization);
+    // if (!authorization) throw new Error('Invalid Token');
+    const role = await UserService.validateUser(String(authorization));
     response.status(200).json({ role });
   };
 }

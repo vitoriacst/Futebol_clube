@@ -1,6 +1,8 @@
+import Errors from '../middlewares/Errors';
 import Match from '../database/models/matches.model';
 import Teams from '../database/models/team.model';
 import { IMatch } from '../interfaces/Match.interface';
+import TeamService from './team.service';
 
 // {
 //   [
@@ -60,6 +62,13 @@ export default class MatchService {
   };
 
   static saveMatch = async (match:IMatch) : Promise<Match> => {
+    const Team = await TeamService.getAll();
+    console.log(Team);
+    const Compare = Team.filter((element) =>
+      element.id === match.awayTeam && element.id === match.homeTeam);
+    if (!Compare.length) {
+      throw new Errors(404, 'There is no team with such id!');
+    }
     const result = await Match.create({
       ...match,
       inProgress: true,
