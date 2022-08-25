@@ -1,4 +1,5 @@
 import { Request, Response, Router } from 'express';
+import LeaderBoardController from 'src/controllers/leaderboard.controller';
 import MatchController from '../controllers/matches.controller';
 import TeamController from '../controllers/teamController';
 import UserController from '../controllers/userController';
@@ -30,6 +31,12 @@ application.patch(
 );
 
 application.post('/matches', (request, response) => MatchController.saveMatch(request, response));
+
+application.get('/home', (request, response) =>
+  LeaderBoardController.chooseTeams(request, response));
+
+application.get('/away', (request, response) =>
+  LeaderBoardController.chooseTeams(request, response));
 
 export default application;
 
