@@ -11,15 +11,14 @@ export interface IGoals {
 }
 
 export interface IScore{
-  name:string,
-  points: number,
-  games: number,
-  losses: number,
-  victories: number,
-  goalsLosses:number,
-  goalsFavor:number,
-  goalsOwn: number,
-  goalsTotal: number,
-  efficiency: string,
-  totalDraws: number
+  name: string;
+  totalGames: number;
+  totalPoints: number;
+  totalVictories: number;
+  totalDraws: number;
+  totalLosses: number;
+  goalsOwn: number;
+  goalsFavor: number;
+  efficiency: string
+  goalsBalance: number;
 }

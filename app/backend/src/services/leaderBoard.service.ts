@@ -1,9 +1,18 @@
+import { IScore } from '../interfaces/leaderboard';
 import { ITeam } from '../interfaces/Teams.interface';
 import MatchService from './match.service';
 import TeamService from './team.service';
 
-const sortResult = () => {
-
+// => criando criterios para o desempate
+const sortResult = (prev: IScore, curr: IScore) => {
+  let result = curr.totalPoints - prev.totalPoints;
+  if (result) result = curr.totalVictories - prev.totalVictories;
+  // total de vitorias
+  if (result) result = curr.goalsFavor - prev.goalsFavor;
+  // total de gols a favor
+  if (result) result = curr.goalsOwn - prev.goalsOwn;
+  // total de gols contra
+  return result;
 };
 
 export default class LeaderBoardService {
@@ -152,6 +161,7 @@ export default class LeaderBoardService {
       }
     }
     const result = await Promise.all(Scores);
-    return result;
+    // => fazendo um sort nos criterios
+    return result.sort(sortResult);
   };
 }
