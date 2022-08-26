@@ -6,11 +6,13 @@ import TeamService from './team.service';
 // => criando criterios para o desempate
 const sortResult = (prev: IScore, curr: IScore) => {
   let result = curr.totalPoints - prev.totalPoints;
-  if (result) result = curr.totalVictories - prev.totalVictories;
+  if (!result) result = curr.totalVictories - prev.totalVictories;
+  // total dos gols
+  if (!result) result = curr.goalsBalance - prev.goalsBalance;
   // total de vitorias
-  if (result) result = curr.goalsFavor - prev.goalsFavor;
+  if (!result) result = curr.goalsFavor - prev.goalsFavor;
   // total de gols a favor
-  if (result) result = curr.goalsOwn - prev.goalsOwn;
+  if (!result) result = curr.goalsOwn - prev.goalsOwn;
   // total de gols contra
   return result;
 };
@@ -43,9 +45,9 @@ export default class LeaderBoardService {
       element.awayTeamGoals === element.homeTeamGoals).length;
     // => total de vitorias
     const totalVictories = AwayTeam.filter((element) =>
-      element.awayTeamGoals > element.homeTeamGoals).length;
+      element.homeTeamGoals < element.awayTeam).length;
     // total de partidas perdidas
-    const totalLosses = AwayTeam.filter((element) => element.awayTeamGoals < element.homeTeamGoals);
+    const totalLosses = AwayTeam.filter((element) => element.homeTeamGoals > element.awayTeamGoals);
     // => total de partidas
     const soccerMatches = AwayTeam.length;
     return { totalDraws, totalVictories, totalLosses, soccerMatches };
@@ -55,31 +57,39 @@ export default class LeaderBoardService {
 
   static goalsHome = async (teamId: number) => {
     const matches = await MatchService.getAllProgress('false');
-    // =>  total de gols a favor do time da casa
-    const goalsFavor = matches.reduce((acc, match) => {
-      if (match.homeTeam === teamId) return acc + match.homeTeamGoals;
-      return acc;
-    }, 0);
-    // =>  total de gols contra do time da casa
-    const own = matches.reduce((acc, match) => {
-      if (match.homeTeam === teamId) return acc + match.awayTeam;
-      return acc;
-    }, 0);
-    return { goalsFavor, own };
+    let goalsFavor = 0;
+    matches.forEach((element) => {
+      if (element.homeTeam === teamId) {
+        goalsFavor += element.homeTeamGoals;
+      }
+    });
+
+    let goalsOwn = 0;
+    matches.forEach((element) => {
+      if (element.homeTeam === teamId) {
+        goalsOwn += element.awayTeamGoals;
+      }
+    });
+    return { goalsFavor, goalsOwn };
   };
 
   static goalsAway = async (teamId: number) => {
     const matches = await MatchService.getAllProgress('false');
-    // =>  total de gols a favor do time da casa
-    const goalsFavor = matches.reduce((acc, match) => {
-      if (match.awayTeam === teamId) return acc + match.awayTeamGoals;
-      return acc;
-    }, 0);
-    // =>  total de gols contra do time da casa
-    const goalsOwn = matches.reduce((acc, match) => {
-      if (match.awayTeam === teamId) return acc + match.awayTeamGoals;
-      return acc;
-    }, 0);
+
+    let goalsFavor = 0;
+    matches.forEach((element) => {
+      if (element.awayTeam === teamId) {
+        goalsFavor += element.awayTeamGoals;
+      }
+    });
+
+    let goalsOwn = 0;
+    matches.forEach((element) => {
+      if (element.awayTeam === teamId) {
+        goalsOwn += element.homeTeamGoals;
+      }
+    });
+
     return { goalsFavor, goalsOwn };
   };
 
@@ -106,19 +116,19 @@ export default class LeaderBoardService {
 
   static scoreHome = async (team:ITeam) => {
     const matches = await this.matchesHomeTeam(team.id);
-    const { goalsFavor, goalsOwn } = await this.goalsAway(team.id);
+    const { goalsFavor, goalsOwn } = await this.goalsHome(team.id);
     const { totalDraws, totalVictories, totalGames, totalLosses } = matches;
     const totalPoints = totalVictories * 3 + totalDraws * 1;
 
     const teamScore = {
       name: team.teamName,
       totalPoints,
+      totalGames,
+      totalVictories,
+      totalDraws,
+      totalLosses,
       goalsFavor,
       goalsOwn,
-      totalDraws,
-      totalVictories,
-      totalGames,
-      totalLosses,
       goalsBalance: goalsFavor - goalsOwn,
       efficiency: ((totalPoints / (totalGames * 3)) * 100).toFixed(2),
     };
@@ -133,12 +143,12 @@ export default class LeaderBoardService {
     const teamScore = {
       name: team.teamName,
       totalPoints,
+      totalGames,
+      totalVictories,
+      totalDraws,
+      totalLosses,
       goalsFavor,
       goalsOwn,
-      totalDraws,
-      totalVictories,
-      totalGames,
-      totalLosses,
       goalsBalance: goalsFavor - goalsOwn,
       efficiency: ((totalPoints / (totalGames * 3)) * 100).toFixed(2),
     };

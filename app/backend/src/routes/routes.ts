@@ -32,10 +32,10 @@ application.patch(
 
 application.post('/matches', (request, response) => MatchController.saveMatch(request, response));
 
-application.get('/home', (request, response) =>
+application.get('/leaderboard/home', (request, response) =>
   LeaderBoardController.home(request, response));
 
-application.get('/away', (request, response) =>
+application.get('/leaderboard/away', (request, response) =>
   LeaderBoardController.away(request, response));
 
 export default application;
