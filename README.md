@@ -1,4 +1,4 @@
-# ⚽ Futebol Clube 🇧🇷
+#  FUTEBOL CLUBE  
 
 ![Vitória](https://user-images.githubusercontent.com/86388276/188506339-e72af24a-2597-46d3-980c-945f3d652743.jpg)
 
