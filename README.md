@@ -1,16 +1,41 @@
-# 🚧 README em construção 🚧
+# ⚽ Futebol Clube 🇧🇷
 
-<!-- Olá, Tryber!
+![Vitória](https://user-images.githubusercontent.com/86388276/188506339-e72af24a-2597-46d3-980c-945f3d652743.jpg)
 
-Esse é apenas um arquivo inicial para o README do seu projeto.
 
-É essencial que você preencha esse documento por conta própria, ok?
+# 📕Descrição
+No projeto Futebol clube houve a criação de uma API RESTful, na sua construção utilizei o modelo MSC [ MODEL - SERVICE - CONTROLLER] e também foi utilizado o TypeScript para a sua construção.Utilizando os conceitos de Poo e uma abrangente cobertura feita por testes.
 
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
 
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
 
--->
+# 🪓Ferramentas Utilizadas
+- TypeScript
+- Sequelize.js
+- POO
+- Express.js
+- Docker
+- MySql
+- .Env
+- Express Recuse
+- Json web Tokens
+- Node.js
+- Sequelize.js
+- Json Web Tokens
+- DotEnv
+- Mysql
+- Mocha.js
+- Chai.js
+- Sinon.js
+
+ 
+# 💡Lições aprendidas
+```JavaScript
+let licoesAprendidas = [
+ 'Praticando TypeScript',
+ 'utilizando classes em TypeScript'
+ 'API com MSC' ,
+ 'Testes com chai , mocha.js e sinon ',
+ 'autenticação por Json Web Token',
+ 'Sequelize'
+]
+```
